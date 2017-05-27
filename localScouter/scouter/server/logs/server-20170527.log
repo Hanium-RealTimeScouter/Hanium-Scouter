@@ -1,0 +1,130 @@
+20170527 12:44:33 Scouter Server Version 0.6.0 20170510
+  ____                  _            
+ / ___|  ___ ___  _   _| |_ ___ _ __ 
+ \___ \ / __/   \| | | | __/ _ \ '__|
+  ___) | (_| (+) | |_| | ||  __/ |   
+ |____/ \___\___/ \__,_|\__\___|_|                                      
+ Open Source S/W Performance Monitoring  
+ Scouter version 0.6.0 20170510
+ 
+20170527 12:44:33 Load Account Group File
+20170527 12:44:33 Load Account File
+20170527 12:44:33 Load Account Group File
+20170527 12:44:33 udp listen 0.0.0.0:6100
+20170527 12:44:33 	udp_host=0.0.0.0
+20170527 12:44:33 	udp_port=6100
+20170527 12:44:33 	udp_buffer=65535
+20170527 12:44:33 	udp_so_rcvbuf=4194304
+20170527 12:44:33 Load Account File
+20170527 12:44:33 	tcp_port=6100
+20170527 12:44:33 	cp_agent_so_timeout=60000
+20170527 12:44:33 	cp_client_so_timeout=8000
+20170527 12:44:34 [S104] New OBJECT  objType=linux objHash=z11a847l objName=/kmucs-ThinkPad-T450 addr=127.0.0.1 0.6.0 20170510 alive 2017-05-27 12:44:34.442
+20170527 12:44:39 PLUG-IN : scouter.server.plugin.IAlert loaded #xa6qp9j
+20170527 12:44:39 PLUG-IN : scouter.server.plugin.ICounter loaded #xcoqpi2
+20170527 12:44:39 PLUG-IN : scouter.server.plugin.IObject loaded #xufg9q5
+20170527 12:44:39 PLUG-IN : scouter.server.plugin.IXLog loaded #x10h0hje
+20170527 12:44:39 PLUG-IN : scouter.server.plugin.IXLog loaded #xjru10g
+20170527 12:44:39 PLUG-IN : scouter.server.plugin.IXLogProfile loaded #xj00sda
+20170527 12:44:39 PLUG-IN : scouter.server.plugin.ISummary loaded #x12au3pp
+20170527 12:44:57 [S104] New OBJECT  objType=tomcat objHash=z130g0p7 objName=/kmucs-ThinkPad-T450/MyCat addr=127.0.0.1 0.6.0 20170510 alive 2017-05-27 12:44:57.037 {ADC=false}
+20170527 12:44:59 [S104] New OBJECT  objType=reqproc objHash=x1vkpj0t objName=/kmucs-ThinkPad-T450/MyCat/ajp-bio-8009 addr=127.0.0.1 alive 2017-05-27 12:44:59.139
+20170527 12:44:59 [S104] New OBJECT  objType=reqproc objHash=x87um5 objName=/kmucs-ThinkPad-T450/MyCat/http-bio-8080 addr=127.0.0.1 alive 2017-05-27 12:44:59.139
+20170527 12:45:03 [S501] Cannot find a tcp agent for /kmucs-ThinkPad-T450/MyCat/http-bio-8080
+20170527 12:45:03 [S501] Cannot find a tcp agent for /kmucs-ThinkPad-T450/MyCat/ajp-bio-8009
+20170527 12:47:41 [S145] GeoIP db file is not readable : /home/kmucs/Desktop/localScouter/scouter/server/conf/GeoLiteCity.dat
+20170527 14:21:13 [S178] Server Shutdown
+20170527 14:21:13 [S179] Shutdown scouter.server.db.DBCtr$$anon$1@78047b92 ...
+20170527 14:21:13 [S179] Shutdown scouter.server.core.CoreRun$$anon$1@8909f18 ...
+20170527 14:21:21 Scouter Server Version 0.6.0 20170510
+  ____                  _            
+ / ___|  ___ ___  _   _| |_ ___ _ __ 
+ \___ \ / __/   \| | | | __/ _ \ '__|
+  ___) | (_| (+) | |_| | ||  __/ |   
+ |____/ \___\___/ \__,_|\__\___|_|                                      
+ Open Source S/W Performance Monitoring  
+ Scouter version 0.6.0 20170510
+ 
+20170527 14:21:21 Load Account Group File
+20170527 14:21:21 Load Account File
+20170527 14:21:21 Load Account Group File
+20170527 14:21:21 udp listen 0.0.0.0:6100
+20170527 14:21:21 	udp_host=0.0.0.0
+20170527 14:21:21 	udp_port=6100
+20170527 14:21:21 	udp_buffer=65535
+20170527 14:21:21 	udp_so_rcvbuf=4194304
+20170527 14:21:21 Load Account File
+20170527 14:21:21 	tcp_port=6100
+20170527 14:21:21 	cp_agent_so_timeout=60000
+20170527 14:21:21 	cp_client_so_timeout=8000
+20170527 14:21:21 [BuiltInPlugin]scouter.plugin.server.alert.line.LinePlugin=>counter
+20170527 14:21:21 [BuiltInPlugin]scouter.plugin.server.alert.line.LinePlugin=>object
+20170527 14:21:21 [BuiltInPlugin]scouter.plugin.server.alert.line.LinePlugin=>alert
+20170527 14:21:22 [S104] New OBJECT  objType=linux objHash=z11a847l objName=/kmucs-ThinkPad-T450 addr=127.0.0.1 0.6.0 20170510 alive 2017-05-27 14:21:22.722
+20170527 14:21:22 [S104] New OBJECT  objType=tomcat objHash=z130g0p7 objName=/kmucs-ThinkPad-T450/MyCat addr=127.0.0.1 0.6.0 20170510 alive 2017-05-27 14:21:22.999 {ADC=false}
+20170527 14:21:22 [S104] New OBJECT  objType=reqproc objHash=x1vkpj0t objName=/kmucs-ThinkPad-T450/MyCat/ajp-bio-8009 addr=127.0.0.1 alive 2017-05-27 14:21:22.999
+20170527 14:21:22 [S104] New OBJECT  objType=reqproc objHash=x87um5 objName=/kmucs-ThinkPad-T450/MyCat/http-bio-8080 addr=127.0.0.1 alive 2017-05-27 14:21:22.999
+20170527 14:21:26 PLUG-IN : scouter.server.plugin.IAlert loaded #xf2fnch
+20170527 14:21:26 PLUG-IN : scouter.server.plugin.ICounter loaded #x1c4tgnh
+20170527 14:21:26 PLUG-IN : scouter.server.plugin.IObject loaded #x5t2r2j
+20170527 14:21:26 PLUG-IN : scouter.server.plugin.IXLog loaded #x1oh9h4a
+20170527 14:21:26 PLUG-IN : scouter.server.plugin.IXLog loaded #xujhqad
+20170527 14:21:26 PLUG-IN : scouter.server.plugin.IXLogProfile loaded #xloqnvf
+20170527 14:21:26 PLUG-IN : scouter.server.plugin.ISummary loaded #x1avbdqo
+20170527 14:21:51 [S501] Cannot find a tcp agent for /kmucs-ThinkPad-T450/MyCat/http-bio-8080
+20170527 14:21:51 [S501] Cannot find a tcp agent for /kmucs-ThinkPad-T450/MyCat/ajp-bio-8009
+20170527 14:25:36 [S145] GeoIP db file is not readable : /home/kmucs/Desktop/localScouter/scouter/server/conf/GeoLiteCity.dat
+20170527 14:27:34 Scouter Server Version 0.6.0 20170510
+  ____                  _            
+ / ___|  ___ ___  _   _| |_ ___ _ __ 
+ \___ \ / __/   \| | | | __/ _ \ '__|
+  ___) | (_| (+) | |_| | ||  __/ |   
+ |____/ \___\___/ \__,_|\__\___|_|                                      
+ Open Source S/W Performance Monitoring  
+ Scouter version 0.6.0 20170510
+ 
+20170527 14:27:52 [S178] Server Shutdown
+20170527 14:27:52 [S179] Shutdown scouter.server.db.DBCtr$$anon$1@223f3642 ...
+20170527 14:27:52 [S179] Shutdown scouter.server.core.CoreRun$$anon$1@38c5cc4c ...
+20170527 14:28:01 Scouter Server Version 0.6.0 20170510
+  ____                  _            
+ / ___|  ___ ___  _   _| |_ ___ _ __ 
+ \___ \ / __/   \| | | | __/ _ \ '__|
+  ___) | (_| (+) | |_| | ||  __/ |   
+ |____/ \___\___/ \__,_|\__\___|_|                                      
+ Open Source S/W Performance Monitoring  
+ Scouter version 0.6.0 20170510
+ 
+20170527 14:28:01 Load Account Group File
+20170527 14:28:01 Load Account File
+20170527 14:28:02 Load Account Group File
+20170527 14:28:02 udp listen 0.0.0.0:6100
+20170527 14:28:02 	udp_host=0.0.0.0
+20170527 14:28:02 	udp_port=6100
+20170527 14:28:02 	udp_buffer=65535
+20170527 14:28:02 	udp_so_rcvbuf=4194304
+20170527 14:28:02 Load Account File
+20170527 14:28:02 	tcp_port=6100
+20170527 14:28:02 	cp_agent_so_timeout=60000
+20170527 14:28:02 	cp_client_so_timeout=8000
+20170527 14:28:02 [BuiltInPlugin]scouter.plugin.server.alert.line.LinePlugin=>counter
+20170527 14:28:02 [BuiltInPlugin]scouter.plugin.server.alert.line.LinePlugin=>object
+20170527 14:28:02 [BuiltInPlugin]scouter.plugin.server.alert.line.LinePlugin=>alert
+20170527 14:28:03 [S104] New OBJECT  objType=linux objHash=z11a847l objName=/kmucs-ThinkPad-T450 addr=127.0.0.1 0.6.0 20170510 alive 2017-05-27 14:28:03.128
+20170527 14:28:03 [S104] New OBJECT  objType=tomcat objHash=z130g0p7 objName=/kmucs-ThinkPad-T450/MyCat addr=127.0.0.1 0.6.0 20170510 alive 2017-05-27 14:28:03.28 {ADC=false}
+20170527 14:28:03 [S104] New OBJECT  objType=reqproc objHash=x1vkpj0t objName=/kmucs-ThinkPad-T450/MyCat/ajp-bio-8009 addr=127.0.0.1 alive 2017-05-27 14:28:03.281
+20170527 14:28:03 [S104] New OBJECT  objType=reqproc objHash=x87um5 objName=/kmucs-ThinkPad-T450/MyCat/http-bio-8080 addr=127.0.0.1 alive 2017-05-27 14:28:03.281
+20170527 14:28:07 PLUG-IN : scouter.server.plugin.IAlert loaded #xf2fnch
+20170527 14:28:07 PLUG-IN : scouter.server.plugin.ICounter loaded #x1c4tgnh
+20170527 14:28:07 PLUG-IN : scouter.server.plugin.IObject loaded #x5t2r2j
+20170527 14:28:07 PLUG-IN : scouter.server.plugin.IXLog loaded #x1oh9h4a
+20170527 14:28:07 PLUG-IN : scouter.server.plugin.IXLog loaded #xujhqad
+20170527 14:28:07 PLUG-IN : scouter.server.plugin.IXLogProfile loaded #xloqnvf
+20170527 14:28:07 PLUG-IN : scouter.server.plugin.ISummary loaded #x1avbdqo
+20170527 14:28:24 [S145] GeoIP db file is not readable : /home/kmucs/Desktop/localScouter/scouter/server/conf/GeoLiteCity.dat
+20170527 14:28:31 [S111] queue exceeded!!
+20170527 14:28:32 [S501] Cannot find a tcp agent for /kmucs-ThinkPad-T450/MyCat/http-bio-8080
+20170527 14:28:32 [S501] Cannot find a tcp agent for /kmucs-ThinkPad-T450/MyCat/ajp-bio-8009
+20170527 14:35:53 [S178] Server Shutdown
+20170527 14:35:53 [S179] Shutdown scouter.server.db.DBCtr$$anon$1@223f3642 ...
+20170527 14:35:53 [S179] Shutdown scouter.server.core.CoreRun$$anon$1@38c5cc4c ...

@@ -1,0 +1,300 @@
+2016-11-19 21:50:20
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (24.79-b02 mixed mode):
+
+"Scouter-DumpUtil" daemon prio=5 tid=0x00007fad2e1e8000 nid=0x7e03 runnable [0x0000700007f54000]
+   java.lang.Thread.State: RUNNABLE
+	at sun.tools.attach.BsdVirtualMachine.read(Native Method)
+	at sun.tools.attach.BsdVirtualMachine$SocketInputStream.read(BsdVirtualMachine.java:243)
+	- locked <0x00000007ad7380b0> (a sun.tools.attach.BsdVirtualMachine$SocketInputStream)
+	at sun.tools.attach.HotSpotVirtualMachine.readInt(HotSpotVirtualMachine.java:236)
+	at sun.tools.attach.BsdVirtualMachine.execute(BsdVirtualMachine.java:183)
+	at sun.tools.attach.HotSpotVirtualMachine.executeCommand(HotSpotVirtualMachine.java:217)
+	at sun.tools.attach.HotSpotVirtualMachine.remoteDataDump(HotSpotVirtualMachine.java:174)
+	at scouter.xtra.tools.ToolsMain.threadDump(ToolsMain.java:122)
+	- locked <0x00000007ad737e78> (a scouter.xtra.tools.ToolsMain)
+	at scouter.agent.proxy.ToolsMainFactory.threadDump(ToolsMainFactory.java:146)
+	- locked <0x00000007af501210> (a java.lang.Class for scouter.agent.proxy.ToolsMainFactory)
+	at scouter.agent.util.DumpUtil.triggerThreadDump(DumpUtil.java:81)
+	at scouter.agent.util.DumpUtil.run(DumpUtil.java:199)
+
+"Scouter-DumpOnCpuExceedanceWorker" daemon prio=5 tid=0x00007fad2e1e6800 nid=0x7c03 waiting on condition [0x0000700007e51000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at scouter.agent.util.DumpUtil.autoDumpByCpuExceedance(DumpUtil.java:249)
+	at scouter.agent.netio.request.worker.DumpOnCpuExceedanceWorker.run(DumpOnCpuExceedanceWorker.java:38)
+
+"SCOUTER5" daemon prio=5 tid=0x00007fad2e96d000 nid=0x6e0b runnable [0x0000700007d4e000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:254)
+	- locked <0x00000007ac4a56d0> (a java.io.BufferedInputStream)
+	at java.io.DataInputStream.readInt(DataInputStream.java:387)
+	at scouter.io.DataInputX.readInt(DataInputX.java:318)
+	at scouter.io.DataInputX.readIntBytes(DataInputX.java:70)
+	at scouter.agent.netio.data.net.TcpWorker.processV2(TcpWorker.java:114)
+	at scouter.agent.netio.data.net.TcpWorker.run(TcpWorker.java:29)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+"SCOUTER4" daemon prio=5 tid=0x00007fad2da3a000 nid=0x350f waiting on condition [0x000070000773c000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000007aee1bfb8> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2043)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1068)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+"SCOUTER3" daemon prio=5 tid=0x00007fad2da10800 nid=0x620b waiting on condition [0x00007000055d6000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000007aee1bfb8> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2043)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1068)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+"SCOUTER2" daemon prio=5 tid=0x00007fad2e8db000 nid=0x7917 waiting on condition [0x000070000712a000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000007aee1bfb8> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2043)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1068)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+"Attach Listener" daemon prio=5 tid=0x00007fad2d000800 nid=0x5f07 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"ajp-bio-18009-AsyncTimeout" daemon prio=5 tid=0x00007fad2da17800 nid=0x7703 waiting on condition [0x0000700007c4b000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at org.apache.tomcat.util.net.JIoEndpoint$AsyncTimeout.run(JIoEndpoint.java:152)
+	at java.lang.Thread.run(Thread.java:745)
+
+"ajp-bio-18009-Acceptor-0" daemon prio=5 tid=0x00007fad2da16800 nid=0x7503 runnable [0x0000700007b48000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:398)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:530)
+	at java.net.ServerSocket.accept(ServerSocket.java:498)
+	at org.apache.tomcat.util.net.DefaultServerSocketFactory.acceptSocket(DefaultServerSocketFactory.java:60)
+	at org.apache.tomcat.util.net.JIoEndpoint$Acceptor.run(JIoEndpoint.java:222)
+	at java.lang.Thread.run(Thread.java:745)
+
+"http-bio-18080-AsyncTimeout" daemon prio=5 tid=0x00007fad2b67d800 nid=0x7303 waiting on condition [0x0000700007a45000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at org.apache.tomcat.util.net.JIoEndpoint$AsyncTimeout.run(JIoEndpoint.java:152)
+	at java.lang.Thread.run(Thread.java:745)
+
+"http-bio-18080-Acceptor-0" daemon prio=5 tid=0x00007fad2c7f6800 nid=0x7103 runnable [0x0000700007942000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:398)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:530)
+	at java.net.ServerSocket.accept(ServerSocket.java:498)
+	at org.apache.tomcat.util.net.DefaultServerSocketFactory.acceptSocket(DefaultServerSocketFactory.java:60)
+	at org.apache.tomcat.util.net.JIoEndpoint$Acceptor.run(JIoEndpoint.java:222)
+	at java.lang.Thread.run(Thread.java:745)
+
+"ContainerBackgroundProcessor[StandardEngine[Catalina]]" daemon prio=5 tid=0x00007fad2da16000 nid=0x6f03 waiting on condition [0x000070000783f000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1512)
+	at java.lang.Thread.run(Thread.java:745)
+
+"Scouter-DelayedServiceManager" daemon prio=5 tid=0x00007fad2b4b3000 nid=0x6b07 waiting on condition [0x0000700007639000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at scouter.util.ThreadUtil.sleep(ThreadUtil.java:39)
+	at scouter.agent.trace.DelayedServiceManager.run(DelayedServiceManager.java:64)
+
+"GC Daemon" daemon prio=5 tid=0x00007fad2cc2c000 nid=0x6907 in Object.wait() [0x0000700007536000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x00000007aefc7b98> (a sun.misc.GC$LatencyLock)
+	at sun.misc.GC$Daemon.run(GC.java:117)
+	- locked <0x00000007aefc7b98> (a sun.misc.GC$LatencyLock)
+
+"Scouter-UDPDataSendThread" daemon prio=5 tid=0x00007fad2cff7000 nid=0x6703 waiting on condition [0x0000700007433000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at scouter.util.ThreadUtil.sleep(ThreadUtil.java:39)
+	at scouter.agent.netio.data.UDPDataSendThread.run(UDPDataSendThread.java:80)
+
+"SCOUTER1" daemon prio=5 tid=0x00007fad2c0ed800 nid=0x6507 waiting on condition [0x0000700007330000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000007aee1bfb8> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2043)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1068)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI Scheduler(0)" daemon prio=5 tid=0x00007fad2c0ed000 nid=0x6303 waiting on condition [0x000070000722d000]
+   java.lang.Thread.State: WAITING (parking)
+	at sun.misc.Unsafe.park(Native Method)
+	- parking to wait for  <0x00000007aee1cc80> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2043)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1079)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:807)
+	at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1068)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Accept-0" daemon prio=5 tid=0x00007fad2c114000 nid=0x5b03 runnable [0x0000700006e21000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:398)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:530)
+	at java.net.ServerSocket.accept(ServerSocket.java:498)
+	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:52)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:399)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:371)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Accept-11099" daemon prio=5 tid=0x00007fad2c0b5800 nid=0x5903 runnable [0x0000700006d1e000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:398)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:530)
+	at java.net.ServerSocket.accept(ServerSocket.java:498)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:399)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:371)
+	at java.lang.Thread.run(Thread.java:745)
+
+"RMI TCP Accept-0" daemon prio=5 tid=0x00007fad2c89d800 nid=0x5703 runnable [0x0000700006c1b000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:398)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:530)
+	at java.net.ServerSocket.accept(ServerSocket.java:498)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:399)
+	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:371)
+	at java.lang.Thread.run(Thread.java:745)
+
+"Scouter-PluginLoader" daemon prio=5 tid=0x00007fad2c0f8800 nid=0x5503 waiting on condition [0x0000700006b18000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at scouter.util.ThreadUtil.sleep(ThreadUtil.java:39)
+	at scouter.agent.plugin.PluginLoader.run(PluginLoader.java:55)
+
+"Scouter-CounterExecutingManager" daemon prio=5 tid=0x00007fad2b83e000 nid=0x5303 waiting on condition [0x0000700006a15000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at scouter.util.ThreadUtil.sleep(ThreadUtil.java:39)
+	at scouter.agent.counter.CounterExecutingManager.run(CounterExecutingManager.java:46)
+
+"Service Thread" daemon prio=5 tid=0x00007fad2c890800 nid=0x5103 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread1" daemon prio=5 tid=0x00007fad2c890000 nid=0x4f03 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" daemon prio=5 tid=0x00007fad2c88f000 nid=0x4d03 waiting on condition [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Scouter-AsyncRunner" daemon prio=5 tid=0x00007fad2c043800 nid=0x4b03 in Object.wait() [0x0000700006609000]
+   java.lang.Thread.State: TIMED_WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x00000007aefc1b18> (a scouter.util.RequestQueue)
+	at scouter.util.RequestQueue.get(RequestQueue.java:59)
+	- locked <0x00000007aefc1b18> (a scouter.util.RequestQueue)
+	at scouter.agent.util.AsyncRunner.run(AsyncRunner.java:91)
+
+"SCOUTER-TCP" daemon prio=5 tid=0x00007fad2c03b000 nid=0x1107 waiting on condition [0x0000700006506000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at scouter.util.ThreadUtil.sleep(ThreadUtil.java:39)
+	at scouter.agent.netio.data.net.TcpRequestMgr.run(TcpRequestMgr.java:29)
+
+"Scouter-BackJobs" daemon prio=5 tid=0x00007fad2b01d800 nid=0x1507 waiting on condition [0x0000700006403000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at scouter.util.ThreadUtil.sleep(ThreadUtil.java:39)
+	at scouter.agent.BackJobs.run(BackJobs.java:65)
+
+"Scouter-Configure" daemon prio=5 tid=0x00007fad2b831000 nid=0x4903 waiting on condition [0x0000700006300000]
+   java.lang.Thread.State: TIMED_WAITING (sleeping)
+	at java.lang.Thread.sleep(Native Method)
+	at scouter.util.ThreadUtil.sleep(ThreadUtil.java:39)
+	at scouter.agent.Configure.run(Configure.java:489)
+
+"JDWP Command Reader" daemon prio=5 tid=0x00007fad2c02d800 nid=0x4703 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"JDWP Event Helper Thread" daemon prio=5 tid=0x00007fad2c839800 nid=0x4503 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"JDWP Transport Listener: dt_socket" daemon prio=5 tid=0x00007fad2b01e800 nid=0x4303 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Signal Dispatcher" daemon prio=5 tid=0x00007fad2b004000 nid=0x4103 runnable [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Finalizer" daemon prio=5 tid=0x00007fad2c831800 nid=0x3103 in Object.wait() [0x0000700005df1000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x00000007aeb789c8> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:135)
+	- locked <0x00000007aeb789c8> (a java.lang.ref.ReferenceQueue$Lock)
+	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:151)
+	at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:209)
+
+"Reference Handler" daemon prio=5 tid=0x00007fad2b81f800 nid=0x2f03 in Object.wait() [0x0000700005cee000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait(Native Method)
+	- waiting on <0x00000007aeb78288> (a java.lang.ref.Reference$Lock)
+	at java.lang.Object.wait(Object.java:503)
+	at java.lang.ref.Reference$ReferenceHandler.run(Reference.java:133)
+	- locked <0x00000007aeb78288> (a java.lang.ref.Reference$Lock)
+
+"main" prio=5 tid=0x00007fad2b000800 nid=0x1c03 runnable [0x00007000056db000]
+   java.lang.Thread.State: RUNNABLE
+	at java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:398)
+	at java.net.ServerSocket.implAccept(ServerSocket.java:530)
+	at java.net.ServerSocket.accept(ServerSocket.java:498)
+	at org.apache.catalina.core.StandardServer.await(StandardServer.java:453)
+	at org.apache.catalina.startup.Catalina.await(Catalina.java:777)
+	at org.apache.catalina.startup.Catalina.start(Catalina.java:723)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:321)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:455)
+
+"VM Thread" prio=5 tid=0x00007fad2c831000 nid=0x2d03 runnable 
+
+"GC task thread#0 (ParallelGC)" prio=5 tid=0x00007fad2b009000 nid=0x2503 runnable 
+
+"GC task thread#1 (ParallelGC)" prio=5 tid=0x00007fad2c002800 nid=0x2703 runnable 
+
+"GC task thread#2 (ParallelGC)" prio=5 tid=0x00007fad2c800800 nid=0x2903 runnable 
+
+"GC task thread#3 (ParallelGC)" prio=5 tid=0x00007fad2c801000 nid=0x2b03 runnable 
+
+"VM Periodic Task Thread" prio=5 tid=0x00007fad2c0b6800 nid=0x5d03 waiting on condition 
+
+JNI global references: 9833
+

@@ -1,0 +1,37 @@
+20170526 21:07:50 Scouter Server Version 0.6.0 20170510
+  ____                  _            
+ / ___|  ___ ___  _   _| |_ ___ _ __ 
+ \___ \ / __/   \| | | | __/ _ \ '__|
+  ___) | (_| (+) | |_| | ||  __/ |   
+ |____/ \___\___/ \__,_|\__\___|_|                                      
+ Open Source S/W Performance Monitoring  
+ Scouter version 0.6.0 20170510
+ 
+20170526 21:07:50 Load Account Group File
+20170526 21:07:50 Load Account File
+20170526 21:07:50 udp listen 0.0.0.0:6100
+20170526 21:07:50 	udp_host=0.0.0.0
+20170526 21:07:50 	udp_port=6100
+20170526 21:07:50 	udp_buffer=65535
+20170526 21:07:50 	udp_so_rcvbuf=4194304
+20170526 21:07:50 Load Account Group File
+20170526 21:07:50 Load Account File
+20170526 21:07:50 	tcp_port=6100
+20170526 21:07:50 	cp_agent_so_timeout=60000
+20170526 21:07:50 	cp_client_so_timeout=8000
+20170526 21:07:51 [S104] New OBJECT  objType=tomcat objHash=z130g0p7 objName=/kmucs-ThinkPad-T450/MyCat addr=127.0.0.1 0.6.0 20170510 alive 2017-05-26 21:07:51.424 {ADC=false}
+20170526 21:07:51 [S104] New OBJECT  objType=reqproc objHash=x1vkpj0t objName=/kmucs-ThinkPad-T450/MyCat/ajp-bio-8009 addr=127.0.0.1 alive 2017-05-26 21:07:51.431
+20170526 21:07:51 [S104] New OBJECT  objType=reqproc objHash=x87um5 objName=/kmucs-ThinkPad-T450/MyCat/http-bio-8080 addr=127.0.0.1 alive 2017-05-26 21:07:51.431
+20170526 21:07:51 [S104] New OBJECT  objType=linux objHash=z11a847l objName=/kmucs-ThinkPad-T450 addr=127.0.0.1 0.6.0 20170510 alive 2017-05-26 21:07:51.49
+20170526 21:07:55 PLUG-IN : scouter.server.plugin.IAlert loaded #xkteqvo
+20170526 21:07:55 PLUG-IN : scouter.server.plugin.ICounter loaded #x1qrbnqd
+20170526 21:07:55 PLUG-IN : scouter.server.plugin.IObject loaded #x1mkfnf4
+20170526 21:07:55 PLUG-IN : scouter.server.plugin.IXLog loaded #x4plt2m
+20170526 21:07:55 PLUG-IN : scouter.server.plugin.IXLog loaded #x1pmde5s
+20170526 21:07:55 PLUG-IN : scouter.server.plugin.IXLogProfile loaded #x1bjdj8o
+20170526 21:07:55 PLUG-IN : scouter.server.plugin.ISummary loaded #xnpn9c3
+20170526 21:08:20 [S501] Cannot find a tcp agent for /kmucs-ThinkPad-T450/MyCat/http-bio-8080
+20170526 21:08:20 [S501] Cannot find a tcp agent for /kmucs-ThinkPad-T450/MyCat/ajp-bio-8009
+20170526 21:16:59 [S178] Server Shutdown
+20170526 21:16:59 [S179] Shutdown scouter.server.db.DBCtr$$anon$1@70e22ed3 ...
+20170526 21:16:59 [S179] Shutdown scouter.server.core.CoreRun$$anon$1@250326fa ...
