@@ -31,7 +31,9 @@ public class ObjectContainer {
 	 * [4]: ERR_LAST_TIME = 마지막 에러 발생 시간
 	 * 
 	 */
-	private static transient HashMap<Integer, long[]> objContainer = new HashMap<Integer, long[]>();
+	//private static transient HashMap<Integer, long[]> objContainer = new HashMap<Integer, long[]>();
+	
+	private static transient HashMap<Integer, Container> objContainer;
 	
 	//최초 에러 발생 시간
 	public static final int ERR_START_TIME = 0;
@@ -44,6 +46,9 @@ public class ObjectContainer {
 	//마지막 에러 발생 시간
 	public static final int ERR_LAST_TIME = 4;
 	
+	//에러 발생 객체 이름
+	public static final int ERR_OBJ_NAME = 10;
+	
 	/**
 	 * 특정 오브젝트의 에러 발생 정보를 초기화 하는 메서드.<br>
 	 * 최초 에러 발생 시간과 임계시간, 누적 에러 발생 횟수를 배열 형태로 해시맵에 저장한다.<br>
@@ -52,7 +57,7 @@ public class ObjectContainer {
 	 * @param limitTimeMillis 임계시간
 	 * @param safeTimeMillis 안정시간
 	 */
-	public static synchronized void init(int objHash, long startTimeMillis, long limitTimeMillis, long safeTimeMillis){
+	public static synchronized void init(String name, int objHash, long startTimeMillis, long limitTimeMillis, long safeTimeMillis){
 		long values[] = new long[5];
 		
 		values[ERR_START_TIME] = startTimeMillis; //최초 에러 발생 시간
@@ -61,7 +66,9 @@ public class ObjectContainer {
 		values[ERR_SAFE_TIME] = safeTimeMillis; //에러 안전시간
 		values[ERR_LAST_TIME] = startTimeMillis; //마지막 에러 발생시간
 		
-		objContainer.put(objHash, values);
+		
+		
+		objContainer.put(objHash, new Container(name, values));
 	}
 	
 	/**
@@ -76,7 +83,9 @@ public class ObjectContainer {
 	 * @param value 타입에 대해 설정할 값
 	 */
 	public static synchronized void setValue(int objHash, final int TYPE, long value){
-		objContainer.get(objHash)[TYPE] = value;
+		
+		
+		objContainer.get(objHash).values[TYPE] = value;
 	}
 	
 	/**
@@ -91,7 +100,7 @@ public class ObjectContainer {
 	 * @return
 	 */
 	public static long getValue(int objHash, final int TYPE){
-		return objContainer.get(objHash)[TYPE];
+		return objContainer.get(objHash).values[TYPE];
 	}
 	
 	/**
@@ -110,7 +119,7 @@ public class ObjectContainer {
 	 * 원래 없었던 오브젝트를 제거한다면 null 반환
 	 */
 	public static synchronized long[] remove(int objHash){
-		return objContainer.remove(objHash);
+		return objContainer.remove(objHash).values;
 	}
 	
 	/**
@@ -119,7 +128,7 @@ public class ObjectContainer {
 	 * @return 해당 오브젝트의 정보가 담긴 배열
 	 */
 	public static long[] getAllValues(int objHash){
-		return objContainer.get(objHash);
+		return objContainer.get(objHash).values;
 	}
 	
 	/**
@@ -136,7 +145,7 @@ public class ObjectContainer {
 		}
 		
 		long curTime = System.currentTimeMillis(); //현재 시간
-		long values[] = objContainer.get(objHash); //해당 오브젝트의 모든 정보를 가져옴
+		long values[] = getAllValues(objHash); //해당 오브젝트의 모든 정보를 가져옴
 		long elapsedTime; //최초 오류 발생으로부터 경과된 시간
 		
 		/* 누적 에러발생시간 = 현재시간 - 객체의 초기 에러발생시간 */
@@ -148,8 +157,8 @@ public class ObjectContainer {
 	public static void gc(){
 		long values[], curTime = System.currentTimeMillis();
 		//foreach 돌면서 안전시간동안 에러가 발생하지 않은 오브젝트를 map에서 제거함.
-		for(Entry<Integer, long[]> obj : objContainer.entrySet()){
-			values = obj.getValue();
+		for(Entry<Integer, Container> obj : objContainer.entrySet()){
+			values = obj.getValue().values;
 			
 			//최종 에러발생 시간으로부터 safe time 이상의 시간이 지났으면 gc
 			if(curTime - values[ERR_LAST_TIME] > values[ERR_SAFE_TIME]){
@@ -170,7 +179,7 @@ public class ObjectContainer {
 	 * @param safeTime 각 객체별 안전시간
 	 * @return 메일을 보냈으면 true, 안보냈으면 false
 	 */
-	public static boolean sendAlert(AlertPack ap, long limitTime, long safeTime){
+	public static boolean sendAlert(AlertPack ap, String name, long limitTime, long safeTime){
 		String additionalMessage = "";
     	long values[], curTime = ap.time; //현재시간;
     	final long A_MINUTE = 60000; //1분
@@ -180,32 +189,33 @@ public class ObjectContainer {
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
     	
     	/* 객체의 에러 발생 임계치 초과 여부 체크 */
-    	if(ObjectContainer.contains(objHash)){
+    	if(contains(objHash)){
 
-    		values = ObjectContainer.getAllValues(objHash); //해당 오브젝트의 값
+    		values = getAllValues(objHash); //해당 오브젝트의 값
     		
     		//임계시간 초과 시 메세지 추가 후 메일 전송
-    		if(ObjectContainer.exceedLimitTime(objHash)){
+    		if(exceedLimitTime(objHash)){
     			
     			additionalMessage = String.format(
     					"\n[위 험] : 에러가 %d분 동안 지속 발생중입니다! (제한시간: %d분)\n"+
     					"          최초 발생시간: %s\n"+
-    					"          누적 에러 발생 횟수: %d 회\n",
-    					(curTime - values[ObjectContainer.ERR_START_TIME]) / A_MINUTE,
-    					(values[ObjectContainer.ERR_LIMIT_TIME]) / A_MINUTE, 
-    					sdf.format(new Date(values[ObjectContainer.ERR_START_TIME])),
-    					values[ObjectContainer.ERR_COUNT]);
+    					"          누적 에러 발생 횟수: %d 회\n(테스트: %s)\n",
+    					(curTime - values[ERR_START_TIME]) / A_MINUTE,
+    					(values[ERR_LIMIT_TIME]) / A_MINUTE, 
+    					sdf.format(new Date(values[ERR_START_TIME])),
+    					values[ERR_COUNT],
+    					name);
     			
     			ap.message += additionalMessage; //추가 메세지를 원본 메세지 뒤에 붙임
     			
     			/* 임계시간 초과 시 메일 보내고 객체 삭제 -> 정책별로 상이 */
-    			ObjectContainer.remove(objHash);
+    			remove(objHash);
     		}
     		else{
     			//아직 임계시간 안지났으면 에러발생횟수 + 1 갱신,
     			//마지막 에러 발생시간 갱신 후 종료
-    			ObjectContainer.setValue(objHash, ObjectContainer.ERR_COUNT, values[ObjectContainer.ERR_COUNT] + 1);
-    			ObjectContainer.setValue(objHash, ObjectContainer.ERR_LAST_TIME, curTime);
+    			setValue(objHash, ERR_COUNT, values[ERR_COUNT] + 1);
+    			setValue(objHash, ERR_LAST_TIME, curTime);
     			return false;
     		}
     	}
@@ -213,7 +223,7 @@ public class ObjectContainer {
     		
     		// limitTime 동안 계속 에러나면 메일보낸다
     		// safeTime 간 에러가 한번도 없으면 객체 삭제
-    		ObjectContainer.init(objHash, curTime, limitTime, safeTime);
+    		init(name, objHash, curTime, limitTime, safeTime);
     		return false; //첫 에러 발생에 대한 정보 등록 후 종료
     	}
     	return true;

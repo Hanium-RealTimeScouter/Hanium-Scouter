@@ -30,7 +30,8 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.SimpleEmail;
 
-import hanium.util.ObjectContainer;
+import hanium.util.ObjectContainer; //한이음 스카우터 시간제어 모듈
+
 import scouter.lang.AlertLevel;
 import scouter.lang.TextTypes;
 import scouter.lang.TimeTypeEnum;
@@ -105,7 +106,8 @@ public class EmailPlugin {
 				    				
 				    		        long limitTime = conf.getLong("thread_limit_time", 120000);
 				    		        long safeTime = conf.getLong("thread_safe_time", 180000);
-				    		        if(ObjectContainer.sendAlert(ap, limitTime, safeTime)) alert(ap);
+				    		        //이름 일단 objectPack.objName로 해놓음 
+				    		        if(ObjectContainer.sendAlert(ap, objectPack.objName, limitTime, safeTime)) alert(ap);
 				        		}
 							}
 						} catch (Exception e) {
@@ -339,7 +341,7 @@ public class EmailPlugin {
 			int elapsedThreshold = conf.getInt("ext_plugin_elapsed_time_threshold", LIMIT);
 
 			if (elapsedThreshold != 0 && pack.elapsed > elapsedThreshold) {
-				String serviceName = TextRD.getString(DateUtil.yyyymmdd(pack.endTime), TextTypes.SERVICE, pack.service);
+				String serviceName = TextRD.getString(DateUtil.yyyymmdd(pack.endTime), TextTypes.SERVICE, pack.service); //요청 페이지 URL은 이거로 얻어올 수 있다
 
 				AlertPack ap = new AlertPack();
     			
@@ -354,7 +356,7 @@ public class EmailPlugin {
 
 				long limitTime = conf.getLong("elapsed_limit_time", 60000);
 		        long safeTime = conf.getLong("elapsed_safe_time", 120000);
-		        if(ObjectContainer.sendAlert(ap, limitTime, safeTime)) alert(ap);
+		        if(ObjectContainer.sendAlert(ap, serviceName, limitTime, safeTime)) alert(ap);
 			}
 
 		} catch (Exception e) {
@@ -377,7 +379,7 @@ public class EmailPlugin {
 		if (objType != null) {
 			objFamily = CounterManager.getInstance().getCounterEngine().getObjectType(objType).getFamily().getName();
 		}
-
+		
 		try {
 			// in case of objFamily is javaee
 			if (CounterConstants.FAMILY_JAVAEE.equals(objFamily)) {
@@ -406,7 +408,7 @@ public class EmailPlugin {
 
 	    		        long limitTime = conf.getLong("gc_time_limit_time", 100);
 	    		        long safeTime = conf.getLong("gc_time_safe_time", 200);
-	    		        if(ObjectContainer.sendAlert(ap, limitTime, safeTime)) alert(ap);
+	    		        if(ObjectContainer.sendAlert(ap, objName, limitTime, safeTime)) alert(ap); //객체명을 일단 objName으로 해놓음
 	        		}
 	        	}
 	    	}
