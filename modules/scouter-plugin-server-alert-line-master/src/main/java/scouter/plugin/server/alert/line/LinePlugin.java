@@ -205,7 +205,7 @@ public class LinePlugin {
 	        	}
 	        	
 	        	if (pack.timetype == TimeTypeEnum.REALTIME) {
-	        		long gcTimeThreshold = conf.getLong("ext_plugin_gc_time_threshold", 0);
+	        		long gcTimeThreshold = conf.getLong("ext_plugin_gc_time_threshold", 100);
 	        		long gcTime = pack.data.getLong(CounterConstants.JAVA_GC_TIME);
 
 	        		if (gcTimeThreshold != 0 && gcTime > gcTimeThreshold) {
