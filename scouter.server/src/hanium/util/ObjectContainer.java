@@ -33,7 +33,7 @@ public class ObjectContainer {
 	 */
 	//private static transient HashMap<Integer, long[]> objContainer = new HashMap<Integer, long[]>();
 	
-	private static transient HashMap<Integer, Container> objContainer;
+	private static transient HashMap<Integer, Container> objContainer = new HashMap<Integer, Container>();
 	
 	//최초 에러 발생 시간
 	public static final int ERR_START_TIME = 0;
@@ -66,8 +66,6 @@ public class ObjectContainer {
 		values[ERR_SAFE_TIME] = safeTimeMillis; //에러 안전시간
 		values[ERR_LAST_TIME] = startTimeMillis; //마지막 에러 발생시간
 		
-		
-		
 		objContainer.put(objHash, new Container(name, values));
 	}
 	
@@ -85,7 +83,7 @@ public class ObjectContainer {
 	public static synchronized void setValue(int objHash, final int TYPE, long value){
 		
 		
-		objContainer.get(objHash).values[TYPE] = value;
+		objContainer.get(objHash).getValues()[TYPE] = value;
 	}
 	
 	/**
@@ -100,7 +98,7 @@ public class ObjectContainer {
 	 * @return
 	 */
 	public static long getValue(int objHash, final int TYPE){
-		return objContainer.get(objHash).values[TYPE];
+		return objContainer.get(objHash).getValues()[TYPE];
 	}
 	
 	/**
@@ -119,7 +117,7 @@ public class ObjectContainer {
 	 * 원래 없었던 오브젝트를 제거한다면 null 반환
 	 */
 	public static synchronized long[] remove(int objHash){
-		return objContainer.remove(objHash).values;
+		return objContainer.remove(objHash).getValues();
 	}
 	
 	/**
@@ -128,7 +126,7 @@ public class ObjectContainer {
 	 * @return 해당 오브젝트의 정보가 담긴 배열
 	 */
 	public static long[] getAllValues(int objHash){
-		return objContainer.get(objHash).values;
+		return objContainer.get(objHash).getValues();
 	}
 	
 	/**
@@ -158,11 +156,16 @@ public class ObjectContainer {
 		long values[], curTime = System.currentTimeMillis();
 		//foreach 돌면서 안전시간동안 에러가 발생하지 않은 오브젝트를 map에서 제거함.
 		for(Entry<Integer, Container> obj : objContainer.entrySet()){
-			values = obj.getValue().values;
+			values = obj.getValue().getValues();
+			
+			Container con = obj.getValue();
+			long diff = curTime - con.getValues()[ERR_LAST_TIME], pivot = con.getValues()[ERR_SAFE_TIME];
+			Logger.println(String.format("<테스트>이름: %s\n시간차: %d > %d ?\n", con.getName(), diff, pivot));
 			
 			//최종 에러발생 시간으로부터 safe time 이상의 시간이 지났으면 gc
 			if(curTime - values[ERR_LAST_TIME] > values[ERR_SAFE_TIME]){
 				String name = AgentManager.getAgentName(obj.getKey()) == null ? "N/A" : AgentManager.getAgentName(obj.getKey());
+				Logger.println("<한이음>Name: "+obj.getValue().getName());
 				Logger.println( String.format("<한이음> %s 객체가 안정되어 GC에 의해 에러 컨테이너에서 제거되었습니다.\n", name));
 				Logger.println( String.format("startTime=%d, limitTime=%d, count=%d, safeTime=%d, lastTime=%d\n", values[ERR_START_TIME], values[ERR_LIMIT_TIME],
 						values[ERR_COUNT], values[ERR_SAFE_TIME], values[ERR_LAST_TIME]));
