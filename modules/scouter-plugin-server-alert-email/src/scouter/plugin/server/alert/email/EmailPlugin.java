@@ -104,8 +104,8 @@ public class EmailPlugin {
 				    		        ap.time = System.currentTimeMillis();
 				    		        ap.objType = objectPack.objType;
 				    				
-				    		        long limitTime = conf.getLong("thread_limit_time", 120000);
-				    		        long safeTime = conf.getLong("thread_safe_time", 180000);
+				    		        long limitTime = conf.getLong("thread_limit_time", 120000); //2분
+				    		        long safeTime = conf.getLong("thread_safe_time", 180000); //3분
 				    		        //이름 일단 objectPack.objName로 해놓음 
 				    		        if(ObjectContainer.sendAlert(ap, objectPack.objName, limitTime, safeTime)) alert(ap);
 				        		}
@@ -243,7 +243,7 @@ public class EmailPlugin {
                         	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
                             
                             // Make email message
-                            String message = "[한이음 실시간 성능 모니터링 시스템 알림]\n\n" +
+                            String message = "[한이음 실시간 성능 모니터링 시스템 알림 ver.20170707]\n\n" +
                             				 "[제 목] : " + title + "\n" + 
                             				 "[시 간] : " + sdf.format(new Date(pack.time)) + "\n" +
                             				 "[종 류] : " + pack.objType.toUpperCase() + "\n" + 
@@ -354,8 +354,8 @@ public class EmailPlugin {
 				ap.time = System.currentTimeMillis();
 				ap.objType = AgentManager.getAgent(pack.objHash).objType;
 
-				long limitTime = conf.getLong("elapsed_limit_time", 60000);
-		        long safeTime = conf.getLong("elapsed_safe_time", 120000);
+				long limitTime = conf.getLong("elapsed_limit_time", 60000); //1분
+		        long safeTime = conf.getLong("elapsed_safe_time", 120000); //2분
 		        if(ObjectContainer.sendAlert(ap, serviceName, limitTime, safeTime)) alert(ap);
 			}
 
