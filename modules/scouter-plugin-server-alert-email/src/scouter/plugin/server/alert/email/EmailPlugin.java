@@ -28,6 +28,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailAttachment;
+import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 
 import hanium.util.ObjectContainer; //한이음 스카우터 시간제어 모듈
@@ -142,55 +144,6 @@ public class EmailPlugin {
         			public void run() {
                         try {
                         	
-//                        	/************** 일정 시간 경과 시 메일 보내게 하는 코드 ************/
-//                        	String additionalMessage = "";
-//                        	long values[], curTime = pack.time; //현재시간;
-//                        	final long A_MINUTE = 60000; //1분
-//                        	int tmpHash = pack.objHash; //객체의 에러 발생 시간
-//                        	
-//                        	//본문에 표시될 에러 발생 시간 포맷
-//                        	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
-//                        	
-//                        	/* 객체의 에러 발생 임계치 초과 여부 체크 */
-//                        	if(ObjectContainer.contains(tmpHash)){
-//
-//                        		values = ObjectContainer.getAllValues(tmpHash); //해당 오브젝트의 값
-//                        		
-//                        		//임계시간 초과 시 메세지 추가 후 메일 전송
-//                        		if(ObjectContainer.exceedLimitTime(tmpHash)){
-//                        			
-//                        			additionalMessage = String.format(
-//                        					"[위 험] : 에러가 %d분 동안 지속 발생중입니다! (제한시간: %d분)\n"+
-//                        					"          최초 발생시간: %s\n"+
-//                        					"          누적 에러 발생 횟수: %d 회\n",
-//                        					(curTime - values[ObjectContainer.ERR_START_TIME]) / A_MINUTE,
-//                        					(values[ObjectContainer.ERR_LIMIT_TIME]) / A_MINUTE, 
-//                        					sdf.format(new Date(values[ObjectContainer.ERR_START_TIME])),
-//                        					values[ObjectContainer.ERR_COUNT]);
-//                        			
-//                        			/* 임계시간 초과 시 메일 보내고 객체 정보 초기화 -> 정책별로 상이 */
-//                        			//ObjectContainer.remove(tmpHash);
-//                        			ObjectContainer.setValue(tmpHash, ObjectContainer.ERR_START_TIME, curTime);
-//                        		}
-//                        		else{ 
-//                        			//아직 임계시간 안지났으면 에러발생횟수 + 1 갱신,
-//                        			//마지막 에러 발생시간 갱신 후 종료
-//                        			ObjectContainer.setValue(tmpHash, ObjectContainer.ERR_COUNT, values[ObjectContainer.ERR_COUNT] + 1);
-//                        			ObjectContainer.setValue(tmpHash, ObjectContainer.ERR_LAST_TIME, curTime);
-//                        			return;
-//                        		}
-//                        	}
-//                        	else{ //객체가 없다 == 첫 에러 발생
-//                        		
-//                        		//테스트용 임계시간 2분, 안정시간 3분
-//                        		// 2분동안 계속 에러나면 메일보낸다
-//                        		// 3분간 에러가 한번도 없으면 객체 삭제
-//                        		ObjectContainer.init(tmpHash, curTime, 2*A_MINUTE, 3*A_MINUTE);
-//                        		return; //첫 에러 발생에 대한 정보 등록 후 종료
-//                        	}
-//                        	/********************************************************************/
-                        	
-                        	
 							// Get server configurations for email
 							String hostname = conf.getValue("ext_plugin_email_smtp_hostname", "smtp.gmail.com"); // smtp 지정
 							int port = conf.getInt("ext_plugin_email_smtp_port", 587); // smtp 포트번호
@@ -243,7 +196,7 @@ public class EmailPlugin {
                         	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
                             
                             // Make email message
-                            String message = "[한이음 실시간 성능 모니터링 시스템 알림 ver.20170707]\n\n" +
+                            String message = "[한이음 실시간 성능 모니터링 시스템 알림 ver.20170721]\n\n" +
                             				 "[제 목] : " + title + "\n" + 
                             				 "[시 간] : " + sdf.format(new Date(pack.time)) + "\n" +
                             				 "[종 류] : " + pack.objType.toUpperCase() + "\n" + 
@@ -252,7 +205,19 @@ public class EmailPlugin {
                                           	 "[내 용] : " + msg +"\r\n";
                                           
                             // Create an Email instance
+                            /*
                             Email email = new SimpleEmail();
+                            
+                            email.setHostName(hostname);
+                            email.setSmtpPort(port);
+                            email.setAuthenticator(new DefaultAuthenticator(username, password));
+                            email.setStartTLSEnabled(tlsEnabled);
+                            email.setFrom(from);
+                            email.setSubject(subject);
+                            email.setMsg(message);
+                            */
+                            
+                            HtmlEmail email = new HtmlEmail();
                             
                             email.setHostName(hostname);
                             email.setSmtpPort(port);
@@ -271,6 +236,15 @@ public class EmailPlugin {
                             if (cc != null) {
                             	for (String addr : cc.split(",")) email.addCc(addr);
                             }
+                            
+                            /* PDF 보고서 첨부파일 */
+                            EmailAttachment attach = new EmailAttachment();
+                            attach.setDescription("Hanium Scouter PDF Report");
+                            attach.setName("이름");
+                            attach.setPath("경로");
+                            
+                            // 첨부파일 추가
+                            email.attach(attach);
                             
                             // Send the email
                             email.send();
@@ -357,6 +331,7 @@ public class EmailPlugin {
 				long limitTime = conf.getLong("elapsed_limit_time", 60000); //1분
 		        long safeTime = conf.getLong("elapsed_safe_time", 120000); //2분
 		        if(ObjectContainer.sendAlert(ap, serviceName, limitTime, safeTime)) alert(ap);
+		        
 			}
 
 		} catch (Exception e) {

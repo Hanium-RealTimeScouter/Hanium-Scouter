@@ -15,6 +15,7 @@
  *  limitations under the License. 
  */
 package scouter.server;
+
 import scouter.Version;
 import scouter.server.account.AccountManager;
 import scouter.server.core.AutoDeleteScheduler;
@@ -41,9 +42,12 @@ import java.io.IOException;
 
 public class Main {
 	public static void main(String[] args) throws IOException, Exception {
+		
+		/* 한이음 스카우터 프로젝트 */
 		System.out.println("HANIUM_SCOUTER_SERVER");
-		Logo.print(true);
 		Logger.println("Scouter Server Version " + Version.getServerFullVersion());
+
+		Logo.print(true);
 		Logo.print(Logger.pw(), true);
 		Configure.getInstance();
 		if(DBCtr.createLock()==false){

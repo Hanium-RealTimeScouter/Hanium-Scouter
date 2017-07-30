@@ -76,8 +76,7 @@ public class Configure extends Thread {
 	@ConfigDesc("Safe time of non-error persists of GC Time Alert")
 	public long gc_time_safe_time; //이 시간 이상 에러가 발생하지 않으면 에러관련 내부객체 초기화
 	
-
-
+	
 	//SERVER
 	@ConfigDesc("Server ID")
 	public String server_id = SysJMX.getHostName();
