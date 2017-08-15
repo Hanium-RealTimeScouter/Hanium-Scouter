@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="lib/commons-email-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/javax.mail-1.5.2.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/scouter.server"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Hanium-TimeController"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

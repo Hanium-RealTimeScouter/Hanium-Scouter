@@ -35,8 +35,6 @@ import scouter.util.SysJMX;
 import scouter.util.ThreadUtil;
 import scouter.util.logo.Logo;
 
-import hanium.util.ObjectContainer;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -44,7 +42,8 @@ public class Main {
 	public static void main(String[] args) throws IOException, Exception {
 		
 		/* 한이음 스카우터 프로젝트 */
-		System.out.println("HANIUM_SCOUTER_SERVER");
+		Logger.println("[20170815] Hanium Scouter Server - remove nested hanium code");
+		
 		Logger.println("Scouter Server Version " + Version.getServerFullVersion());
 
 		Logo.print(true);
@@ -92,12 +91,7 @@ public class Main {
 			// System.out.println("http://www.maxmind.com");
 			// System.out.println("download:  http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz");
 			// System.out.println("add configure:  geoip_data_city_file=<download path>/GeoLiteCity.dat");
-			while (true) {
-				
-				/** ObjectContainer GC **/
-				ObjectContainer.gc();
-				/************************/
-				
+			while (true) {				
 				if (exit.exists() == false) {
 					ShutdownManager.shutdown();
 					System.exit(0);

@@ -28,11 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
-import org.apache.commons.mail.EmailAttachment;
-import org.apache.commons.mail.HtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
-
-import hanium.util.ObjectContainer; //한이음 스카우터 시간제어 모듈
 
 import scouter.lang.AlertLevel;
 import scouter.lang.TextTypes;
@@ -54,6 +50,11 @@ import scouter.server.db.TextRD;
 import scouter.server.netio.AgentCall;
 import scouter.util.DateUtil;
 import scouter.util.HashUtil;
+
+import common.Util;
+
+/* 시간제어 모듈(BuiltInPlugin) */
+import scouter.plugin.server.hanium.timecontroller.ObjectContainer;
 
 /**
  * Scouter server plugin to send alert via email
@@ -108,6 +109,7 @@ public class EmailPlugin {
 				    				
 				    		        long limitTime = conf.getLong("thread_limit_time", 120000); //2분
 				    		        long safeTime = conf.getLong("thread_safe_time", 180000); //3분
+				    		        
 				    		        //이름 일단 objectPack.objName로 해놓음 
 				    		        if(ObjectContainer.sendAlert(ap, objectPack.objName, limitTime, safeTime)) alert(ap);
 				        		}
@@ -118,7 +120,7 @@ public class EmailPlugin {
 					}
 				}
 	    	}, 
-	    	0, 5, TimeUnit.SECONDS);
+	    	0, 5, TimeUnit.SECONDS); //5초간격 실행
     	}
 	}
 
@@ -196,13 +198,13 @@ public class EmailPlugin {
                         	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
                             
                             // Make email message
-                            String message = "[한이음 실시간 성능 모니터링 시스템 알림 ver.20170815]\n\n" +
-                            				 "[제 목] : " + title + "\n" + 
-                            				 "[시 간] : " + sdf.format(new Date(pack.time)) + "\n" +
-                            				 "[종 류] : " + pack.objType.toUpperCase() + "\n" + 
-                                          	 "[이 름] : " + name + "\n" + 
-                                          	 "[수 준] : " + AlertLevel.getName(pack.level) + "\n" +
-                                          	 "[내 용] : " + msg +"\r\n";
+                            String message = "[한이음 실시간 성능 모니터링 시스템 알림 ver.20170815]" + Util.NEW_LINE +
+                            				 "[제 목] : " + title + Util.NEW_LINE + 
+                            				 "[시 간] : " + sdf.format(new Date(pack.time)) + Util.NEW_LINE +
+                            				 "[종 류] : " + pack.objType.toUpperCase() + Util.NEW_LINE + 
+                                          	 "[이 름] : " + name + Util.NEW_LINE + 
+                                          	 "[수 준] : " + AlertLevel.getName(pack.level) + Util.NEW_LINE +
+                                          	 "[내 용] : " + msg + Util.NEW_LINE;
                                           
                             // Create an Email instance
                             Email email = new SimpleEmail();
