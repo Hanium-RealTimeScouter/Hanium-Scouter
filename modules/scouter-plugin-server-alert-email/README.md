@@ -59,8 +59,8 @@ ext_plugin_thread_count_threshold=300
     - activation-1.1.1.jar
     - commons-email-1.4.jar
     - javax.mail-1.5.2.jar
-    - **scouter-plugin-server-time-controller.jar**
-    
+    - scouter-plugin-server-time-controller.jar
+    
 ### Build & Deploy
 * Build
     - 프로젝트 내의 build.xml을 실행한다.
