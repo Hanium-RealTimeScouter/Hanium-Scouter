@@ -196,7 +196,7 @@ public class EmailPlugin {
                         	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
                             
                             // Make email message
-                            String message = "[한이음 실시간 성능 모니터링 시스템 알림 ver.20170721]\n\n" +
+                            String message = "[한이음 실시간 성능 모니터링 시스템 알림 ver.20170815]\n\n" +
                             				 "[제 목] : " + title + "\n" + 
                             				 "[시 간] : " + sdf.format(new Date(pack.time)) + "\n" +
                             				 "[종 류] : " + pack.objType.toUpperCase() + "\n" + 
@@ -205,19 +205,7 @@ public class EmailPlugin {
                                           	 "[내 용] : " + msg +"\r\n";
                                           
                             // Create an Email instance
-                            /*
                             Email email = new SimpleEmail();
-                            
-                            email.setHostName(hostname);
-                            email.setSmtpPort(port);
-                            email.setAuthenticator(new DefaultAuthenticator(username, password));
-                            email.setStartTLSEnabled(tlsEnabled);
-                            email.setFrom(from);
-                            email.setSubject(subject);
-                            email.setMsg(message);
-                            */
-                            
-                            HtmlEmail email = new HtmlEmail();
                             
                             email.setHostName(hostname);
                             email.setSmtpPort(port);
@@ -236,15 +224,6 @@ public class EmailPlugin {
                             if (cc != null) {
                             	for (String addr : cc.split(",")) email.addCc(addr);
                             }
-                            
-                            /* PDF 보고서 첨부파일 */
-                            EmailAttachment attach = new EmailAttachment();
-                            attach.setDescription("Hanium Scouter PDF Report");
-                            attach.setName("이름");
-                            attach.setPath("경로");
-                            
-                            // 첨부파일 추가
-                            email.attach(attach);
                             
                             // Send the email
                             email.send();
