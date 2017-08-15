@@ -47,6 +47,10 @@ public class BuiltInPluginManager {
                 }
             } catch (Throwable t) {
                 Logger.println("Server Plugin Load Error");
+                Logger.println(t.getMessage());
+                
+                Logger.printStackTrace(t); //임시 출력
+                
                 if(Configure.getInstance()._trace) {
                     t.printStackTrace();
                 }

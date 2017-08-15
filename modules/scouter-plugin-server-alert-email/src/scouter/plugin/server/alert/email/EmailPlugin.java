@@ -71,6 +71,9 @@ public class EmailPlugin {
     private static AtomicInteger ai = new AtomicInteger(0);
     private static List<Integer> javaeeObjHashList = new ArrayList<Integer>();
     
+    /* 시간제어 모듈 */
+    private static ObjectContainer objectContainer = new ObjectContainer();
+    
     public EmailPlugin() {
     	if (ai.incrementAndGet() == 1) {
 	    	ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
@@ -111,7 +114,7 @@ public class EmailPlugin {
 				    		        long safeTime = conf.getLong("thread_safe_time", 180000); //3분
 				    		        
 				    		        //이름 일단 objectPack.objName로 해놓음 
-				    		        if(ObjectContainer.sendAlert(ap, objectPack.objName, limitTime, safeTime)) alert(ap);
+				    		        if(objectContainer.sendAlert(ap, objectPack.objName, limitTime, safeTime)) alert(ap);
 				        		}
 							}
 						} catch (Exception e) {
@@ -230,9 +233,11 @@ public class EmailPlugin {
                             // Send the email
                             email.send();
                             
-                            println("Email sent to [" + to + "] successfully.");
+                            println("Email about " + name +" sent to [" + to + "] successfully.");
+                            Logger.println("Email about " + name +" sent to [" + to + "] successfully.");
                         } catch (Exception e) {
                         	println("[에 러] : " + e.getMessage());
+                        	Logger.printStackTrace(e);
                         	
                         	if (conf._trace) {
                                 e.printStackTrace();
@@ -311,7 +316,7 @@ public class EmailPlugin {
 
 				long limitTime = conf.getLong("elapsed_limit_time", 60000); //1분
 		        long safeTime = conf.getLong("elapsed_safe_time", 120000); //2분
-		        if(ObjectContainer.sendAlert(ap, serviceName, limitTime, safeTime)) alert(ap);
+		        if(objectContainer.sendAlert(ap, serviceName, limitTime, safeTime)) alert(ap);
 		        
 			}
 
@@ -364,7 +369,7 @@ public class EmailPlugin {
 
 	    		        long limitTime = conf.getLong("gc_time_limit_time", 100);
 	    		        long safeTime = conf.getLong("gc_time_safe_time", 200);
-	    		        if(ObjectContainer.sendAlert(ap, objName, limitTime, safeTime)) alert(ap); //객체명을 일단 objName으로 해놓음
+	    		        if(objectContainer.sendAlert(ap, objName, limitTime, safeTime)) alert(ap); //객체명을 일단 objName으로 해놓음
 	        		}
 	        	}
 	    	}

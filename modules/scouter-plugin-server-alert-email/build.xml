@@ -6,6 +6,7 @@
     <property name="jar-activation-file" value="./lib/activation-1.1.1.jar"/>
     <property name="jar-email-file" value="./lib/commons-email-1.4.jar"/>
     <property name="jar-mail-file" value="./lib/javax.mail-1.5.2.jar"/>
+	<property name="jar-hanium-timecontroller" value="./lib/scouter-plugin-server-time-controller.jar"/>
 
     <target name="packaging">
         <mkdir dir="${dir.target.jar}" />
@@ -15,5 +16,6 @@
         <copy file="${jar-activation-file}" todir="${dir.target.jar}" verbose="true"/>
         <copy file="${jar-email-file}" todir="${dir.target.jar}" verbose="true"/>
         <copy file="${jar-mail-file}" todir="${dir.target.jar}" verbose="true"/>
+    	<copy file="${jar-hanium-timecontroller}" todir="${dir.target.jar}" verbose="true"/>
     </target>
 </project>
