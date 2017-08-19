@@ -6,11 +6,14 @@
     <property name="jar-activation-file" value="./lib/activation-1.1.1.jar"/>
     <property name="jar-email-file" value="./lib/commons-email-1.4.jar"/>
     <property name="jar-mail-file" value="./lib/javax.mail-1.5.2.jar"/>
-	<property name="jar-hanium-timecontroller" value="./lib/scouter-plugin-server-time-controller.jar"/>
+	<property name="jar-hanium-timecontroller" value="./lib/scouter-plugin-server-time-controller-1.4.0.jar"/>
+	
+	<!-- Version Information -->
+	<property name="info.version" value="1.5.1"/>
 
     <target name="packaging">
         <mkdir dir="${dir.target.jar}" />
-        <jar destfile="${dir.target.jar}/scouter-plugin-server-alert-email.jar">
+        <jar destfile="${dir.target.jar}/scouter-plugin-server-alert-email-${info.version}.jar">
             <fileset dir="${dir.classes}"/>
         </jar>
         <copy file="${jar-activation-file}" todir="${dir.target.jar}" verbose="true"/>

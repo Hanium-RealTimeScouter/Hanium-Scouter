@@ -58,10 +58,10 @@ import scouter.plugin.server.hanium.timecontroller.ObjectContainer;
 
 /**
  * Scouter server plugin to send alert via email
+ * Sang-Cheon Park(nices96@gmail.com) on 2016. 3. 28.
  * 
- * 2017.05.14. revised by occidere
- * 
- * @author Sang-Cheon Park(nices96@gmail.com) on 2016. 3. 28.
+ * 한이음 실시간 성능 모니터링 시스템 팀 수정버전
+ * @author 2017.05.14. revised by occidere
  */
 public class EmailPlugin {
 	
@@ -110,8 +110,8 @@ public class EmailPlugin {
 				    		        ap.time = System.currentTimeMillis();
 				    		        ap.objType = objectPack.objType;
 				    				
-				    		        long limitTime = conf.getLong("thread_limit_time", 120000); //2분
-				    		        long safeTime = conf.getLong("thread_safe_time", 180000); //3분
+				    		        long limitTime = conf.getLong("ext_plugin_thread_limit_time", 120000); //2분
+				    		        long safeTime = conf.getLong("ext_plugin_thread_safe_time", 180000); //3분
 				    		        
 				    		        //이름 일단 objectPack.objName로 해놓음 
 				    		        if(objectContainer.sendAlert(ap, objectPack.objName, limitTime, safeTime)) alert(ap);
@@ -314,8 +314,8 @@ public class EmailPlugin {
 				ap.time = System.currentTimeMillis();
 				ap.objType = AgentManager.getAgent(pack.objHash).objType;
 
-				long limitTime = conf.getLong("elapsed_limit_time", 60000); //1분
-		        long safeTime = conf.getLong("elapsed_safe_time", 120000); //2분
+				long limitTime = conf.getLong("ext_plugin_elapsed_limit_time", 60000); //1분
+		        long safeTime = conf.getLong("ext_plugin_elapsed_safe_time", 120000); //2분
 		        if(objectContainer.sendAlert(ap, serviceName, limitTime, safeTime)) alert(ap);
 		        
 			}
@@ -367,8 +367,8 @@ public class EmailPlugin {
 	    		        ap.time = System.currentTimeMillis();
 	    		        ap.objType = objType;
 
-	    		        long limitTime = conf.getLong("gc_time_limit_time", 100);
-	    		        long safeTime = conf.getLong("gc_time_safe_time", 200);
+	    		        long limitTime = conf.getLong("ext_plugin_gc_time_limit_time", 100);
+	    		        long safeTime = conf.getLong("ext_plugin_gc_time_safe_time", 200);
 	    		        if(objectContainer.sendAlert(ap, objName, limitTime, safeTime)) alert(ap); //객체명을 일단 objName으로 해놓음
 	        		}
 	        	}
@@ -383,19 +383,4 @@ public class EmailPlugin {
             Logger.println(o);
         }
     }
-    
-    
-    ////////////////////////////////////////////////////////////////
-    /*
-    @ServerPlugin(PluginConstants.PLUGIN_SERVER_SUMMARY)
-    public void summary(SummaryPack pack){
-    	AlertPack ap = new AlertPack();
-    	ap.objHash = pack.objHash;
-    	ap.time = pack.time;
-    	ap.message = pack.toString();
-    	
-    	alert(ap);
-    }
-    */
-    ////////////////////////////////////////////////////////////////
 }

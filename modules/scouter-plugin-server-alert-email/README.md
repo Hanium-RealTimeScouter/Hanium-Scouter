@@ -1,4 +1,10 @@
 # scouter-plugin-server-alert-email
+
+## VERSION INFO
+ - ver 1.5.1 (BUILD 20170819)
+    - Added Version.java file
+    - Match the property format to Scouter BuiltInPlugin rules(i.e. thread_limit_time -> ext_plugin_thread_limit_time)
+
 ### Scouter server plugin to send a alert via email
 
 - 본 프로젝트는 스카우터 서버 플러그인으로써 서버에서 발생한 Alert 메시지를 Email로 발송하는 역할을 한다.

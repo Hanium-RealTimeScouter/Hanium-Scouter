@@ -57,24 +57,24 @@ public class Configure extends Thread {
 		return instance;
 	}
 	
-	/************** HANIUM **************/
-	/* 스레드 초과 오류 관련 */
-	@ConfigDesc("Limit time of error persists of Thread Alert")
-	public long thread_limit_time; //이 시간 이상 에러가 지속 발생하면 alert 보냄
-	@ConfigDesc("Safe time of non-error persists of Thread Alert")
-	public long thread_safe_time; //이 시간 이상 에러가 발생하지 않으면 에러관련 내부객체 초기화
-	
-	/* 응답시간 초과 오류 관련 */
-	@ConfigDesc("Limit time of error persists of Elapsed Time Alert")
-	public long elapsed_limit_time; //이 시간 이상 에러가 지속 발생하면 alert 보냄
-	@ConfigDesc("Safe time of non-error persists of Elapsed Time Alert")
-	public long elapsed_safe_time; //이 시간 이상 에러가 발생하지 않으면 에러관련 내부객체 초기화
-	
-	/* GC 소요시간 관련 */
-	@ConfigDesc("Limit time of error persists of GC Time Alert")
-	public long gc_time_limit_time; //이 시간 이상 에러가 지속 발생하면 alert 보냄
-	@ConfigDesc("Safe time of non-error persists of GC Time Alert")
-	public long gc_time_safe_time; //이 시간 이상 에러가 발생하지 않으면 에러관련 내부객체 초기화
+//	/************** HANIUM **************/
+//	/* 스레드 초과 오류 관련 */
+//	@ConfigDesc("Limit time of error persists of Thread Alert")
+//	public long thread_limit_time; //이 시간 이상 에러가 지속 발생하면 alert 보냄
+//	@ConfigDesc("Safe time of non-error persists of Thread Alert")
+//	public long thread_safe_time; //이 시간 이상 에러가 발생하지 않으면 에러관련 내부객체 초기화
+//	
+//	/* 응답시간 초과 오류 관련 */
+//	@ConfigDesc("Limit time of error persists of Elapsed Time Alert")
+//	public long elapsed_limit_time; //이 시간 이상 에러가 지속 발생하면 alert 보냄
+//	@ConfigDesc("Safe time of non-error persists of Elapsed Time Alert")
+//	public long elapsed_safe_time; //이 시간 이상 에러가 발생하지 않으면 에러관련 내부객체 초기화
+//	
+//	/* GC 소요시간 관련 */
+//	@ConfigDesc("Limit time of error persists of GC Time Alert")
+//	public long gc_time_limit_time; //이 시간 이상 에러가 지속 발생하면 alert 보냄
+//	@ConfigDesc("Safe time of non-error persists of GC Time Alert")
+//	public long gc_time_safe_time; //이 시간 이상 에러가 발생하지 않으면 에러관련 내부객체 초기화
 	
 	
 	//SERVER
@@ -397,14 +397,14 @@ public class Configure extends Thread {
 		this.net_tcp_service_pool_size = getInt("net_tcp_service_pool_size", 100);
 		
 		
-		/********* HANIUM Conf ************/
-		//conf파일에 별도의 명시가 없으면 아래의 디폴트 값들로 적용된다.
-		this.thread_limit_time = getLong("thread_limit_time", 120000); //스레드 디폴트 임계시간은 2분
-		this.thread_safe_time = getLong("thread_safe_time", 180000); //스레드 디폴트 안전시간은 3분
-		this.elapsed_limit_time = getLong("elapsed_limit_time", 60000); //요청시간 디폴트 임계시간은 1분
-		this.elapsed_safe_time = getLong("elapsed_safe_time", 120000); //요청시간 디폴트 안전시간은 2분
-		this.gc_time_limit_time = getLong("gc_time_limit_time", 100); //gc시간 디폴트 임계시간은 100ms
-		this.gc_time_safe_time = getLong("gc_time_safe_time", 200); //gc시간 디폴트 안전시간은 200ms
+//		/********* HANIUM Conf ************/
+//		//conf파일에 별도의 명시가 없으면 아래의 디폴트 값들로 적용된다.
+//		this.thread_limit_time = getLong("thread_limit_time", 120000); //스레드 디폴트 임계시간은 2분
+//		this.thread_safe_time = getLong("thread_safe_time", 180000); //스레드 디폴트 안전시간은 3분
+//		this.elapsed_limit_time = getLong("elapsed_limit_time", 60000); //요청시간 디폴트 임계시간은 1분
+//		this.elapsed_safe_time = getLong("elapsed_safe_time", 120000); //요청시간 디폴트 안전시간은 2분
+//		this.gc_time_limit_time = getLong("gc_time_limit_time", 100); //gc시간 디폴트 임계시간은 100ms
+//		this.gc_time_safe_time = getLong("gc_time_safe_time", 200); //gc시간 디폴트 안전시간은 200ms
 		
 		
 		ConfObserver.exec();
